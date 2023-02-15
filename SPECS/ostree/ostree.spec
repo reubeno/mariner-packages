@@ -90,7 +90,7 @@ env NOCONFIGURE=1 ./autogen.sh
 %configure \
      --disable-silent-rules \
      --disable-man \
-     --enable-gtk-doc \
+     --disable-gtk-doc \
      --with-dracut \
      --without-selinux \
      --enable-libsoup-client-certs
@@ -125,7 +125,6 @@ install -vdm 755 %{buildroot}%{_sysconfdir}/ostree/remotes.d
 %{_unitdir}/ostree*.service
 %{_unitdir}/ostree-finalize-staged.path
 %{_libdir}/dracut/modules.d/98ostree/*
-%{_mandir}/man1/ostree-admin*
 %{_libdir}/systemd/system-generators/ostree-system-generator
 %{_libdir}/systemd/system-preset/91-ostree.preset
 %exclude %{_sysconfdir}/grub.d/*ostree
@@ -146,11 +145,7 @@ install -vdm 755 %{buildroot}%{_sysconfdir}/ostree/remotes.d
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 %{_datadir}/bash-completion/completions/ostree
-%{_datadir}/gtk-doc/html/ostree
 %{_datadir}/gir-1.0/OSTree-1.0.gir
-%exclude %{_mandir}/man1/ostree-admin*
-%{_mandir}/man1/*.gz
-%{_mandir}/man5/*.gz
 
 %files grub2
 %{_sysconfdir}/grub.d/*ostree
