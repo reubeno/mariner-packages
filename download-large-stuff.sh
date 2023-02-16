@@ -5,6 +5,7 @@ SCRIPT_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 echo "Downloading files..."
 
 for specdir in ${SCRIPT_DIR}/SPECS/*; do
+	echo "--------------- [$(basename $specdir)] ---------------"
 	if [[ -f ${specdir}/urls.txt ]]; then
 		for url in $(grep . ${specdir}/urls.txt); do
 			hash=$(cat ${specdir}/$(basename $specdir).signatures.json | jq -r ".Signatures.\"$(basename $url)\"")
@@ -24,4 +25,5 @@ for specdir in ${SCRIPT_DIR}/SPECS/*; do
 			wget -q -O ${specdir}/$(basename $url) $url
 		done
 	fi
+	echo ""
 done
